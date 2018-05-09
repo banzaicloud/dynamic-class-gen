@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: dyn-class-gen
+spec:
+  containers:
+  - name: dyn-class-gen-container
+    image: banzaicloud/dynclassgen:1.0
+    env:
+    - name: DYN_CLASS_COUNT
+      value: "256"
+    - name: MEM_USAGE_PER_OBJECT_MB
+      value: "1"
+    - name: JVM_OPTS
+      value: "-Xmx300M"
+    resources:
+      requests:
+        memory: "64Mi"
+        cpu: 1
+      limits:
+        memory: "370Mi"
+        cpu: 2
+  restartPolicy: Never
